@@ -20,14 +20,14 @@ export default function App() {
   return (
     <div className={styles.fullMenu}>
       {/* {isLoading && <h2>Loading...</h2>} */}
-      <div className={styles.book}>
-        <h1>Phonebook</h1>
-      </div>
+      <div className={styles.book}>{/* <h1>Phonebook</h1> */}</div>
       {/* <ContactForm /> */}
-      <div className={styles.menu}>
-        <LoginForm />
-        <RegisterForm />
-      </div>
+      {/* <div className={styles.menu}>
+        <h2>Login</h2>
+        <h2>Registration</h2>
+      </div> */}
+      <LoginForm />
+      {/* <RegisterForm /> */}
       {/* <SearchBox /> */}
       {/* {error && <h2>THERE WAS EN ERROR</h2>} */}
       {/* <ContactList /> */}
