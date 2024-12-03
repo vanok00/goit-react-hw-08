@@ -1,9 +1,28 @@
 .book {
-  font-size: 32px;
+  font-size: 22px;
+  display: flex;
 }
 
-.wholeContainer {
+/* .wholeContainer {
   margin-left: 32px;
   padding: 16px 32px;
   width: 500px;
+} */
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px green solid;
+  border-radius: 8px;
+  margin-top: 70px;
+  justify-content: center;
+  align-items: center;
+}
+
+.fullMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

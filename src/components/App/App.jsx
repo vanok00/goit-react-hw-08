@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { fetchContacts } from "../../redux/contactsOps.js";
 import { selectIsLoading } from "../../redux/contactsSliсe.js";
 import Loader from "../Loader/Loader.jsx";
+import LoginForm from "../LoginForm/LoginForm.jsx";
+import RegisterForm from "../RegisterForm/RegisterForm.jsx";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -16,14 +18,19 @@ export default function App() {
     dispatch(fetchContacts());
   }, [dispatch]);
   return (
-    <div>
+    <div className={styles.fullMenu}>
       {/* {isLoading && <h2>Loading...</h2>} */}
-      <h1 className={styles.book}>Phonebook</h1>
-      <ContactForm />
-
-      <SearchBox />
-      {error && <h2>THERE WAS EN ERROR</h2>}
-      <ContactList />
+      <div className={styles.book}>
+        <h1>Phonebook</h1>
+      </div>
+      {/* <ContactForm /> */}
+      <div className={styles.menu}>
+        <LoginForm />
+        <RegisterForm />
+      </div>
+      {/* <SearchBox /> */}
+      {/* {error && <h2>THERE WAS EN ERROR</h2>} */}
+      {/* <ContactList /> */}
     </div>
   );
 }

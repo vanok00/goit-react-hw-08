@@ -5,19 +5,8 @@
 body {
   font-family: "Play", sans-serif;
   font-style: normal;
-  margin: 0;
   padding: 20px;
-  background-color: rgb(245, 243, 243);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin: 0;
+  background-color: rgb(231, 229, 94);
 }
 
 a {
