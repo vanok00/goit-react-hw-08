@@ -37,27 +37,13 @@ const LoginForm = () => {
 
   return (
     <>
-      <h1>Registration field</h1>
+      <h1>Sign In Field</h1>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={orderSchema}
       >
         <Form className={styles.contactForm}>
-          <label className={styles.labelForm}>
-            <span>NAME</span>
-            <Field
-              className={styles.inputContactForm}
-              name="username"
-              type="text"
-              placeholder="Enter your name..."
-            />
-            <ErrorMessage
-              name="username"
-              component="p"
-              className={styles.error}
-            ></ErrorMessage>
-          </label>
           <label className={styles.labelForm}>
             <span>EMAIL</span>
             <Field
@@ -87,8 +73,13 @@ const LoginForm = () => {
             ></ErrorMessage>
           </label>
           <button className={styles.addButton} type="submit">
-            REGISTER NOW
+            Login
           </button>
+          <div>
+            <p className={styles.createAcc}>
+              Do not have an account? <li>Create one!</li>
+            </p>
+          </div>
         </Form>
       </Formik>
     </>
