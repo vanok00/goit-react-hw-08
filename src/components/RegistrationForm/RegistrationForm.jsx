@@ -1,10 +1,10 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import styles from "./RegisterForm.module.css";
+import styles from "./RegistrationForm.module.css";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addContactThunk } from "../../redux/contactsOps";
 
-const RegisterForm = () => {
+const RegistrationForm = () => {
   const initialValues = {
     username: "",
     number: "",
@@ -95,4 +95,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default RegistrationForm;

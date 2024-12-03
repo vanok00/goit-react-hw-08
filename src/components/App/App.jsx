@@ -8,7 +8,8 @@ import { fetchContacts } from "../../redux/contactsOps.js";
 import { selectIsLoading } from "../../redux/contactsSliсe.js";
 import Loader from "../Loader/Loader.jsx";
 import LoginForm from "../LoginForm/LoginForm.jsx";
-import RegisterForm from "../RegisterForm/RegisterForm.jsx";
+import RegistrationForm from "../RegistrationForm/RegistrationForm.jsx";
+import Auth from "../Auth/Auth.jsx";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -20,14 +21,14 @@ export default function App() {
   return (
     <div className={styles.fullMenu}>
       {/* {isLoading && <h2>Loading...</h2>} */}
-      <div className={styles.book}>{/* <h1>Phonebook</h1> */}</div>
       {/* <ContactForm /> */}
       {/* <div className={styles.menu}>
         <h2>Login</h2>
         <h2>Registration</h2>
       </div> */}
-      <LoginForm />
-      {/* <RegisterForm /> */}
+      <Auth></Auth>
+      {/* <LoginForm /> */}
+      {/* <RegistrationForm /> */}
       {/* <SearchBox /> */}
       {/* {error && <h2>THERE WAS EN ERROR</h2>} */}
       {/* <ContactList /> */}
