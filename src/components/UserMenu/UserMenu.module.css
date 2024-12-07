@@ -1,0 +1,16 @@
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logoutBtn {
+  font-family: inherit;
+  font-size: 18px;
+  height: 40px;
+  padding: 6px 12px;
+  background-color: purple;
+  color: thistle;
+  border: none;
+  cursor: pointer;
+}

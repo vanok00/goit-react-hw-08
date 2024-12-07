@@ -1,20 +1,9 @@
-import { useEffect, useState } from "react";
-import fetchTrendMovies from "../../services/api";
-
+import styles from "./Homepage.module.css";
 const HomePage = () => {
-  const [trendMovies, setTrendMovies] = useState([]);
-
-  useEffect(() => {
-    const getTrendMovies = async () => {
-      const movies = await fetchTrendMovies();
-      setTrendMovies(movies);
-    };
-    getTrendMovies();
-  }, []);
-
   return (
-    <div>
-      <h1>PhoneBook</h1>
+    <div className={styles.menu}>
+      <h2>Login</h2>
+      <h2>Registration</h2>
     </div>
   );
 };

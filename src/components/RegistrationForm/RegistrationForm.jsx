@@ -2,7 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import styles from "./RegistrationForm.module.css";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { addContactThunk } from "../../redux/contactsOps";
+import { addContact } from "../../redux/contacts/operations";
 
 const RegistrationForm = () => {
   const initialValues = {
@@ -17,7 +17,7 @@ const RegistrationForm = () => {
       name: values.username,
       number: values.number,
     };
-    dispatch(addContactThunk(newContact));
+    dispatch(addContact(newContact));
     options.resetForm();
   };
 
@@ -63,11 +63,11 @@ const RegistrationForm = () => {
             <Field
               placeholder="Enter your email..."
               className={styles.inputContactForm}
-              type="tel"
-              name="number"
+              type="email"
+              name="email"
             />
             <ErrorMessage
-              name="number"
+              name="email"
               component="p"
               className={styles.error}
             ></ErrorMessage>
@@ -77,11 +77,11 @@ const RegistrationForm = () => {
             <Field
               placeholder="Enter your password..."
               className={styles.inputContactForm}
-              type="tel"
-              name="number"
+              type="password"
+              name="password"
             />
             <ErrorMessage
-              name="number"
+              name="password"
               component="p"
               className={styles.error}
             ></ErrorMessage>

@@ -1,38 +1,54 @@
 import { Route, Routes } from "react-router-dom";
-import { lazy } from "react";
-import { Suspense } from "react";
-
-const Navigation = lazy(() => import("./components/Navigation/Navigation"));
-const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
-const Loader = lazy(() => import("./components/Loader/Loader"));
-const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
-const MovieDetailsPage = lazy(() =>
-  import("./pages/MovieDetailsPage/MovieDetailsPage")
-);
-const MoviesPage = lazy(() => import("./pages/MoviesPage/MoviesPage"));
-const MovieReviews = lazy(() =>
-  import("./components/MovieReviews/MovieReviews")
-);
-const MovieCast = lazy(() => import("./components/MovieCast/MovieCast"));
-
-export const baseImgUrl = "https://image.tmdb.org/t/p/w500/";
+import Layout from "./components/Layout";
+import HomePage from "./pages/HomePage/HomePage";
+import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import ContactsPage from "./pages/ContactsPage/ContactsPage";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { refreshUser } from "./redux/auth/operations";
+import { selectIsRefreshing } from "./redux/auth/selectors";
+import RestrictedRoute from "./components/RestrictredRoute";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
-  return (
-    <>
-      <Suspense fallback={<Loader />}>
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/movie" element={<MoviesPage />} />
-          <Route path="/movie/:moviesId" element={<MovieDetailsPage />}>
-            <Route path="casts" element={<MovieCast />} />
-            <Route path="reviews" element={<MovieReviews />} />
-          </Route>
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Suspense>
-    </>
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  return isRefreshing ? null : (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route
+          path="register"
+          element={
+            <RestrictedRoute
+              component={<RegistrationPage />}
+              redirectTo="/contacts"
+            />
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <RestrictedRoute component={<LoginPage />} redirectTo="/contacts" />
+          }
+        />
+        <Route
+          path="contacts"
+          element={
+            <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
+          }
+        />
+      </Route>
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 }
 
