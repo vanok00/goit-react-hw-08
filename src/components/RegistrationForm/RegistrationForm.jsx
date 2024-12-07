@@ -37,7 +37,7 @@ const RegistrationForm = () => {
 
   return (
     <>
-      <h1>Sign up</h1>
+      <h1 className={styles.heading}>Sign up</h1>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}

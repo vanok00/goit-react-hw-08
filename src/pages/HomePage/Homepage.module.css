@@ -1,26 +1,25 @@
-.book {
+.navLink {
   font-size: 22px;
   display: flex;
+  color: black;
+  &&:hover {
+    color: rgba(255, 136, 0, 0.753);
+  }
 }
-
-/* .wholeContainer {
-    margin-left: 32px;
-    padding: 16px 32px;
-    width: 500px;
-  } */
 
 .menu {
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  border: 1px green solid;
+  gap: 20px;
+  width: 300px;
+  padding: 10px;
+  border: 2px green solid;
   border-radius: 8px;
-  margin-top: 70px;
-  justify-content: center;
+  margin: 70px auto;
   align-items: center;
 }
 
-.fullMenu {
+.navLink {
   display: flex;
   flex-direction: column;
   justify-content: center;
