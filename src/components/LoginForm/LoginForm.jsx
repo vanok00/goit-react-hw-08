@@ -2,7 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import styles from "./LoginForm.module.css";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { addContactThunk } from "../../redux/contactsOps";
+import { addContact } from "../../redux/contacts/operations";
 
 const LoginForm = () => {
   const initialValues = {
@@ -17,7 +17,7 @@ const LoginForm = () => {
       name: values.username,
       number: values.number,
     };
-    dispatch(addContactThunk(newContact));
+    dispatch(addContact(newContact));
     options.resetForm();
   };
 
@@ -37,23 +37,23 @@ const LoginForm = () => {
 
   return (
     <>
-      <h1>Sign In Field</h1>
+      <h1 className={styles.heading}>Sign in</h1>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={orderSchema}
       >
-        <Form className={styles.contactForm}>
+        <Form className={styles.loginForm}>
           <label className={styles.labelForm}>
             <span>EMAIL</span>
             <Field
               placeholder="Enter your email..."
-              className={styles.inputContactForm}
-              type="tel"
-              name="number"
+              className={styles.inputLoginForm}
+              type="email"
+              name="email"
             />
             <ErrorMessage
-              name="number"
+              name="email"
               component="p"
               className={styles.error}
             ></ErrorMessage>
@@ -62,12 +62,12 @@ const LoginForm = () => {
             <span>PASSWORD</span>
             <Field
               placeholder="Enter your password..."
-              className={styles.inputContactForm}
-              type="tel"
-              name="number"
+              className={styles.inputLoginForm}
+              type="password"
+              name="password"
             />
             <ErrorMessage
-              name="number"
+              name="password"
               component="p"
               className={styles.error}
             ></ErrorMessage>
@@ -75,11 +75,6 @@ const LoginForm = () => {
           <button className={styles.addButton} type="submit">
             Login
           </button>
-          <div>
-            <p className={styles.createAcc}>
-              Do not have an account? <li>Create one!</li>
-            </p>
-          </div>
         </Form>
       </Formik>
     </>
