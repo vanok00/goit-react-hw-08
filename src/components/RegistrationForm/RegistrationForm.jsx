@@ -2,22 +2,29 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import styles from "./RegistrationForm.module.css";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/operations";
+import { register } from "../../redux/auth/operations";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const RegistrationForm = () => {
   const initialValues = {
-    username: "",
-    number: "",
+    name: "",
+    email: "",
+    password: "",
   };
 
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const handleSubmit = (values, options) => {
-    const newContact = {
-      name: values.username,
-      number: values.number,
-    };
-    dispatch(addContact(newContact));
+    dispatch(register(values))
+      .unwrap()
+      .then((res) => {
+        toast("Welcome ${res?.user?.name}");
+        navigate("/contacts");
+      })
+      .catch(() => {
+        toast.error("Try again");
+      });
     options.resetForm();
   };
 

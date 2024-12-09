@@ -4,7 +4,7 @@ const HomePage = () => {
   return (
     <div className={styles.menu}>
       <NavLink className={styles.navLink} to="/register">
-        Register
+        Registration
       </NavLink>
       <NavLink className={styles.navLink} to="/login">
         Log In

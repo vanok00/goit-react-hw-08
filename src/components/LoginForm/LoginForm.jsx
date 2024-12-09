@@ -3,22 +3,17 @@ import styles from "./LoginForm.module.css";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
+import { login } from "../../redux/auth/operations";
 
 const LoginForm = () => {
-  const initialValues = {
-    username: "",
-    number: "",
-  };
-
   const dispatch = useDispatch();
-
   const handleSubmit = (values, options) => {
-    const newContact = {
-      name: values.username,
-      number: values.number,
-    };
-    dispatch(addContact(newContact));
+    dispatch(login(values));
     options.resetForm();
+  };
+  const initialValues = {
+    email: "",
+    password: "",
   };
 
   const onlyWords = /^[a-zA-Z\s]+$/;
