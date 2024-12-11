@@ -2,10 +2,11 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import styles from "./LoginForm.module.css";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/operations";
 import { login } from "../../redux/auth/operations";
+// import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 const LoginForm = () => {
+  // const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
   const handleSubmit = (values, options) => {
     dispatch(login(values));
@@ -16,17 +17,17 @@ const LoginForm = () => {
     password: "",
   };
 
-  const onlyWords = /^[a-zA-Z\s]+$/;
+  // if (isLoggedIn)
+  // {
+  //   return <Navigate to "contacts"/>
+  // }
 
   const orderSchema = Yup.object().shape({
-    username: Yup.string()
-      .matches(onlyWords, "ONLY WORDS PLEASE")
-      .min(3, "Too short!")
-      .max(50, "Too long!")
+    email: Yup.string()
+      .email("Invalid email")
       .required("This field is required!"),
-    number: Yup.string()
-      .min(3, "Too short!")
-      .max(50, "Too long!")
+    password: Yup.string()
+      .min(6, "Password is too short!")
       .required("This field is required!"),
   });
 

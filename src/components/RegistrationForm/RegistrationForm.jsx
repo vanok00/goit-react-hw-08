@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 const RegistrationForm = () => {
   const initialValues = {
-    name: "",
+    username: "",
     email: "",
     password: "",
   };
@@ -19,7 +19,7 @@ const RegistrationForm = () => {
     dispatch(register(values))
       .unwrap()
       .then((res) => {
-        toast("Welcome ${res?.user?.name}");
+        toast(`Welcome ${res?.user?.name}`);
         navigate("/contacts");
       })
       .catch(() => {
@@ -36,9 +36,11 @@ const RegistrationForm = () => {
       .min(3, "Too short!")
       .max(50, "Too long!")
       .required("This field is required!"),
-    number: Yup.string()
-      .min(3, "Too short!")
-      .max(50, "Too long!")
+    email: Yup.string()
+      .email("Invalid email")
+      .required("This field is required!"),
+    password: Yup.string()
+      .min(6, "Password is too short!")
       .required("This field is required!"),
   });
 

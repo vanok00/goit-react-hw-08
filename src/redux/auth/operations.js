@@ -9,13 +9,17 @@ const setAuthHeader = (token) => {
   authApi.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
+const clearAuth = () => {
+  authApi.defaults.headers.common.Authorization = ``;
+};
+
 export const register = createAsyncThunk(
   "auth/register",
   async (credentials, thunkApi) => {
     try {
-      const { data } = await authApi.post("/users/signup", credentials);
-      setAuthHeader(data.token);
-      return data;
+      const response = await authApi.post("/users/signup", credentials);
+      setAuthHeader(response.data.token);
+      return response.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -26,9 +30,9 @@ export const login = createAsyncThunk(
   "auth/login",
   async (credentials, thunkApi) => {
     try {
-      const { data } = await authApi.post("/users/login", credentials);
-      setAuthHeader(data.token);
-      return data;
+      const response = await authApi.post("/users/login", credentials);
+      setAuthHeader(response.data.token);
+      return response.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -38,6 +42,7 @@ export const login = createAsyncThunk(
 export const logout = createAsyncThunk("auth/logout", async (_, thunkApi) => {
   try {
     await authApi.post("/users/logout");
+    clearAuth();
   } catch (error) {
     return thunkApi.rejectWithValue(error.message);
   }
