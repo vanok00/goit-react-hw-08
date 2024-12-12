@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 const RegistrationForm = () => {
   const initialValues = {
-    username: "",
+    name: "",
     email: "",
     password: "",
   };
@@ -31,7 +31,7 @@ const RegistrationForm = () => {
   const onlyWords = /^[a-zA-Z\s]+$/;
 
   const orderSchema = Yup.object().shape({
-    username: Yup.string()
+    name: Yup.string()
       .matches(onlyWords, "ONLY WORDS PLEASE")
       .min(3, "Too short!")
       .max(50, "Too long!")
