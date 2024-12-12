@@ -57,12 +57,12 @@ const RegistrationForm = () => {
             <span>NAME</span>
             <Field
               className={styles.inputContactForm}
-              name="username"
+              name="name"
               type="text"
               placeholder="Enter your name..."
             />
             <ErrorMessage
-              name="username"
+              name="name"
               component="p"
               className={styles.error}
             ></ErrorMessage>
