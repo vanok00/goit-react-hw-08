@@ -1,10 +1,11 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import styles from "./RegistrationForm.module.css";
 import * as Yup from "yup";
+import { useId } from "react";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
-import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+// import { useNavigate } from "react-router-dom";
+// import toast from "react-hot-toast";
 
 const RegistrationForm = () => {
   const initialValues = {
@@ -14,18 +15,24 @@ const RegistrationForm = () => {
   };
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
+  const nameFieldId = useId();
+  const emailFieldId = useId();
+  const passwordFieldId = useId();
+
+  // const navigate = useNavigate();
   const handleSubmit = (values, options) => {
-    dispatch(register(values))
-      .unwrap()
-      .then((res) => {
-        toast(`Welcome ${res?.user?.name}`);
-        navigate("/contacts");
-      })
-      .catch(() => {
-        toast.error("Try again");
-      });
+    dispatch(register(values));
     options.resetForm();
+    //   .unwrap()
+    //   .then((res) => {
+    //     toast(`Welcome ${res?.user?.name}`);
+    //     navigate("/contacts");
+    //   })
+    //   .catch(() => {
+    //     toast.error("Try again");
+    //   });
+    // options.resetForm();
   };
 
   const onlyWords = /^[a-zA-Z\s]+$/;
@@ -59,6 +66,7 @@ const RegistrationForm = () => {
               className={styles.inputContactForm}
               name="name"
               type="text"
+              id={nameFieldId}
               placeholder="Enter your name..."
             />
             <ErrorMessage
@@ -73,6 +81,7 @@ const RegistrationForm = () => {
               placeholder="Enter your email..."
               className={styles.inputContactForm}
               type="email"
+              id={emailFieldId}
               name="email"
             />
             <ErrorMessage
@@ -88,6 +97,7 @@ const RegistrationForm = () => {
               className={styles.inputContactForm}
               type="password"
               name="password"
+              id={passwordFieldId}
             />
             <ErrorMessage
               name="password"
