@@ -17,7 +17,6 @@ const SearchBox = () => {
         <input
           className={styles.inputSearchboxForm}
           name="username"
-          type="text"
           id={id}
           value={value}
           onChange={(e) => dispatch(changeFilter(e.target.value))}

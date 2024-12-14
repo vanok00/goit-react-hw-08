@@ -3,13 +3,14 @@ import styles from "./ContactForm.module.css";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
+import toast, { Toaster } from "react-hot-toast";
 
 const ContactForm = () => {
   const initialValues = {
     username: "",
     number: "",
   };
-
+  const notify = () => toast("Successfully added contact");
   const dispatch = useDispatch();
 
   const handleSubmit = (values, options) => {
@@ -70,9 +71,18 @@ const ContactForm = () => {
             className={styles.error}
           ></ErrorMessage>
         </label>
-        <button className={styles.addButton} type="submit">
-          Add contact
-        </button>
+        <div>
+          <button
+            className={styles.addButton}
+            onClick={() => {
+              notify();
+            }}
+            type="submit"
+          >
+            Add contact
+          </button>
+          <Toaster />
+        </div>
       </Form>
     </Formik>
   );

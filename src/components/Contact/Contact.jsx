@@ -2,11 +2,11 @@ import styles from "./Contact.module.css";
 import { IoPersonSharp } from "react-icons/io5";
 import { FaPhoneAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contacts/operations";
-
-export default function Contact({ contact }) {
+import { deleteContact, editContact } from "../../redux/contacts/operations";
+import toast, { Toaster } from "react-hot-toast";
+const Contact = ({ id, contact, text }) => {
   const dispatch = useDispatch();
-
+  const notify = () => toast("Successfully deleted contact");
   return (
     <div className={styles.contactLi}>
       <div className={styles.nameNumbs}>
@@ -19,13 +19,30 @@ export default function Contact({ contact }) {
           <p className={styles.contactNumber}>{contact.number}</p>
         </div>
       </div>
-      <button
-        className={styles.deleteButton}
-        onClick={() => dispatch(deleteContact(contact.id))}
-        type="submit"
-      >
-        Delete
-      </button>
+      <div>
+        <button
+          className={styles.editButton}
+          onClick={() =>
+            dispatch(
+              editContact({ id, text: prompt("Enter new value: ") ?? text })
+            )
+          }
+        >
+          Edit
+        </button>
+        <button
+          className={styles.deleteButton}
+          onClick={() => {
+            notify();
+            dispatch(deleteContact(contact.id));
+          }}
+          type="submit"
+        >
+          Delete
+        </button>
+        <Toaster />
+      </div>
     </div>
   );
-}
+};
+export default Contact;

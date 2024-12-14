@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import s from "./NotFoundPage.module.css";
+import styles from "./NotFoundPage.module.css";
 
 export default function NotFound() {
   return (
-    <div className={s.main}>
-      <h1 className={s.heading}>Looks like this page is unavailable...</h1>
-      <Link to="/" className={s.backBtn}>
+    <div className={styles.main}>
+      <h1 className={styles.heading}>Looks like this page is unavailable...</h1>
+      <Link to="/" className={styles.backBtn}>
         Go home
       </Link>
     </div>

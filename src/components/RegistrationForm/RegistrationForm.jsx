@@ -4,8 +4,6 @@ import * as Yup from "yup";
 import { useId } from "react";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
-// import { useNavigate } from "react-router-dom";
-// import toast from "react-hot-toast";
 
 const RegistrationForm = () => {
   const initialValues = {
@@ -20,19 +18,9 @@ const RegistrationForm = () => {
   const emailFieldId = useId();
   const passwordFieldId = useId();
 
-  // const navigate = useNavigate();
   const handleSubmit = (values, options) => {
     dispatch(register(values));
     options.resetForm();
-    //   .unwrap()
-    //   .then((res) => {
-    //     toast(`Welcome ${res?.user?.name}`);
-    //     navigate("/contacts");
-    //   })
-    //   .catch(() => {
-    //     toast.error("Try again");
-    //   });
-    // options.resetForm();
   };
 
   const onlyWords = /^[a-zA-Z\s]+$/;

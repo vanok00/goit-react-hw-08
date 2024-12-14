@@ -1,16 +1,22 @@
 .menu {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 20px;
 }
 
 .logoutBtn {
-  font-family: inherit;
+  font-weight: bold;
+  color: rgba(255, 72, 0, 0.856);
+  border-radius: 8px;
+  cursor: pointer;
   font-size: 18px;
   height: 40px;
   padding: 6px 12px;
-  background-color: purple;
-  color: thistle;
-  border: none;
-  cursor: pointer;
+  background-color: rgb(12, 95, 204);
+}
+
+.greating {
+  color: rgb(12, 95, 204);
+  font-size: 22px;
 }

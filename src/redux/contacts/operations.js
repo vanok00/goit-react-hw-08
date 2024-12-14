@@ -36,3 +36,15 @@ export const addContact = createAsyncThunk(
     }
   }
 );
+
+export const editContact = createAsyncThunk(
+  "contacts/editContact",
+  async (body, thunkApi) => {
+    try {
+      const { data } = await authApi.patch(`/contacts/${body.id}`);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
